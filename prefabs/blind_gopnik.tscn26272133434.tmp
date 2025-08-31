@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtjcenpgsw51w"]
+
+[ext_resource type="PackedScene" uid="uid://jbchplj2oem5" path="res://models/gopnik/t-pose_gopnik.fbx" id="1_xevtu"]
+[ext_resource type="Script" uid="uid://dacojd5wph1bq" path="res://scripts/gopnikAI.gd" id="2_g4yad"]
+[ext_resource type="Animation" uid="uid://cd0fsuqb005sn" path="res://models/mihalkov/animations/running_(1).res" id="3_owt1q"]
+
+[sub_resource type="Animation" id="Animation_megct"]
+resource_name = "Armature|Armature|mixamo_com|Layer0"
+length = 0.0416667
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Skeleton:LeftUpperLeg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1.81373e-10, -1.53811e-09, -1, 3.52157e-08)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Skeleton:LeftShoulder")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.499999, -0.500001, -0.499999, 0.500001)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j3hpi"]
+_data = {
+&"Armature|Armature|mixamo_com|Layer0": SubResource("Animation_megct")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_76p2k"]
+_data = {
+&"running_(1)": ExtResource("3_owt1q")
+}
+
+[node name="t-pose_gopnik" instance=ExtResource("1_xevtu")]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, 0, 0, 0)
+script = ExtResource("2_g4yad")
+
+[node name="Skeleton" parent="Armature" index="0"]
+bones/8/rotation = Quaternion(0.499999, 0.500001, 0.499999, -0.500001)
+bones/18/rotation = Quaternion(1.81373e-10, 1.53811e-09, 1, -3.52157e-08)
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_j3hpi"),
+&"gopnik": SubResource("AnimationLibrary_76p2k")
+}

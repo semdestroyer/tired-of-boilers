@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=3 uid="uid://b6idyvwv74pg8"]
+
+[ext_resource type="Script" uid="uid://dchayh2lrmigb" path="res://player_controls.gd" id="1_0f027"]
+[ext_resource type="Theme" uid="uid://dgcn3mkogk5i2" path="res://ui/theme.tres" id="1_2c62f"]
+[ext_resource type="PackedScene" uid="uid://ctppjdrpm15cv" path="res://models/mihalkov/mihalkov.fbx" id="3_66tet"]
+[ext_resource type="Animation" uid="uid://bs2wupe0jrg0a" path="res://models/mihalkov/animations/idle_(2).res" id="4_7ycvg"]
+[ext_resource type="Animation" uid="uid://dq2d84i03g3oy" path="res://models/mihalkov/animations/right_hook.res" id="4_nfk4m"]
+[ext_resource type="Animation" uid="uid://cd0fsuqb005sn" path="res://models/mihalkov/animations/running_(1).res" id="5_66tet"]
+[ext_resource type="Animation" uid="uid://cnkrjekk2n667" path="res://models/mihalkov/animations/uppercut.res" id="6_7ycvg"]
+[ext_resource type="Animation" uid="uid://0atorx82f6p8" path="res://models/mihalkov/animations/walking_(1).res" id="7_wr18j"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3jxj"]
+
+[sub_resource type="Sky" id="Sky_0f027"]
+sky_material = SubResource("ProceduralSkyMaterial_o3jxj")
+
+[sub_resource type="Environment" id="Environment_o3jxj"]
+background_mode = 2
+sky = SubResource("Sky_0f027")
+
+[sub_resource type="Animation" id="Animation_0f027"]
+resource_name = "intro_cutscene"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2c62f"]
+_data = {
+&"intro_cutscene": SubResource("Animation_0f027")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wr18j"]
+_data = {
+&"idle_(2)": ExtResource("4_7ycvg"),
+&"right_hook": ExtResource("4_nfk4m"),
+&"running_(1)": ExtResource("5_66tet"),
+&"uppercut": ExtResource("6_7ycvg"),
+&"walking_(1)": ExtResource("7_wr18j")
+}
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.536
+anchor_right = 0.536
+offset_left = -423.472
+offset_top = 3.0
+offset_right = 422.528
+offset_bottom = 111.0
+theme_override_font_sizes/normal_font_size = 72
+text = "Наказано Гопников: 0"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.429
+anchor_right = 1.0
+anchor_bottom = 0.429
+offset_left = -96.0
+offset_top = 3.008
+offset_right = -16.0
+offset_bottom = 288.008
+theme = ExtResource("1_2c62f")
+value = 50.0
+rounded = true
+fill_mode = 3
+
+[node name="CinematicCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.549585, -0.21724, 0.806699, 0.0407444, 0.971421, 0.233841, -0.834444, -0.0956468, 0.542729, 2.91055, 0.656771, -4.37619)
+environment = SubResource("Environment_o3jxj")
+fov = 100.0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.264282, -0.0366821, -5.01502)
+size = Vector3(18.4216, 0.0704346, 13.1639)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.803919, 0.594739, 0, -0.594739, 0.803919, 0, 3.59519, 0)
+light_energy = 2.131
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425888, -4.13641)
+size = Vector3(1, 0.871185, 1.80859)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.230628, -8.40408)
+size = Vector3(1, 0.509705, 1.80859)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.254915, -6.24679)
+size = Vector3(1, 0.509705, 1.80859)
+
+[node name="CutscenePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2c62f")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="mihalkov" parent="." instance=ExtResource("3_66tet")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -5.41408, 0, -1.47718)
+script = ExtResource("1_0f027")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="mihalkov"]
+libraries = {
+&"mixamo": SubResource("AnimationLibrary_wr18j")
+}
+
+[node name="PlayerCamera" type="Camera3D" parent="mihalkov"]
+transform = Transform3D(-9.92757, -0.47327, 1.10422, 0, 9.19135, 3.93942, -1.20137, 3.91089, -9.12478, 0.529694, 2.78494, -2.03525)
+environment = SubResource("Environment_o3jxj")
+current = true

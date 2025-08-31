@@ -1,0 +1,182 @@
+[gd_scene load_steps=36 format=3 uid="uid://dtjcenpgsw51w"]
+
+[ext_resource type="PackedScene" uid="uid://jbchplj2oem5" path="res://models/gopnik/t-pose_gopnik.fbx" id="1_xevtu"]
+[ext_resource type="Script" uid="uid://dacojd5wph1bq" path="res://scripts/gopnikAI.gd" id="2_g4yad"]
+[ext_resource type="Animation" uid="uid://cd0fsuqb005sn" path="res://models/mihalkov/animations/running_(1).res" id="3_owt1q"]
+
+[sub_resource type="Animation" id="Animation_megct"]
+resource_name = "Armature|Armature|mixamo_com|Layer0"
+length = 0.0416667
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Skeleton:LeftUpperLeg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -1.81373e-10, -1.53811e-09, -1, 3.52157e-08)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Skeleton:LeftShoulder")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.499999, -0.500001, -0.499999, 0.500001)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j3hpi"]
+_data = {
+&"Armature|Armature|mixamo_com|Layer0": SubResource("Animation_megct")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_76p2k"]
+_data = {
+&"running_(1)": ExtResource("3_owt1q")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m35m6"]
+animation = &"mixamo/idle_(2)"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7th4q"]
+animation = &"mixamo/right_hook"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u0ygc"]
+animation = &"mixamo/uppercut"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qwutr"]
+filter_enabled = true
+filters = ["%Skeleton:Chest", "%Skeleton:Head", "%Skeleton:Hips", "%Skeleton:LeftLowerArm", "%Skeleton:LeftShoulder", "%Skeleton:LeftUpperArm", "%Skeleton:Neck", "%Skeleton:RightLowerArm", "%Skeleton:RightShoulder", "%Skeleton:RightUpperArm", "%Skeleton:Spine", "%Skeleton:UpperChest"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qwutr"]
+animation = &"mixamo/idle_(2)"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_671wp"]
+animation = &"mixamo/running_(1)"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mo76n"]
+animation = &"mixamo/walking_(1)"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_42l1d"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u0ygc"]
+break_loop_at_end = true
+reset = false
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7th4q"]
+break_loop_at_end = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wr18j"]
+advance_mode = 2
+advance_condition = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qwutr"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2jcla"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m35m6"]
+advance_mode = 2
+advance_condition = &"run"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_671wp"]
+states/Start/position = Vector2(102, 90)
+states/mixamo_idle_(2)/node = SubResource("AnimationNodeAnimation_qwutr")
+states/mixamo_idle_(2)/position = Vector2(249, 90)
+states/mixamo_running_(1)/node = SubResource("AnimationNodeAnimation_671wp")
+states/mixamo_running_(1)/position = Vector2(323, -4)
+states/mixamo_walking_(1)/node = SubResource("AnimationNodeAnimation_mo76n")
+states/mixamo_walking_(1)/position = Vector2(509, 90)
+transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_42l1d"), "mixamo_running_(1)", "mixamo_walking_(1)", SubResource("AnimationNodeStateMachineTransition_u0ygc"), "mixamo_walking_(1)", "mixamo_running_(1)", SubResource("AnimationNodeStateMachineTransition_7th4q"), "mixamo_idle_(2)", "mixamo_walking_(1)", SubResource("AnimationNodeStateMachineTransition_wr18j"), "mixamo_walking_(1)", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_qwutr"), "mixamo_running_(1)", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_2jcla"), "mixamo_idle_(2)", "mixamo_running_(1)", SubResource("AnimationNodeStateMachineTransition_m35m6")]
+graph_offset = Vector2(-122, -112)
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_wr18j"]
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vimvf"]
+filter_enabled = true
+filters = ["%Skeleton:Chest", "%Skeleton:Head", "%Skeleton:Hips", "%Skeleton:LeftLowerArm", "%Skeleton:LeftShoulder", "%Skeleton:LeftUpperArm", "%Skeleton:Neck", "%Skeleton:RightLowerArm", "%Skeleton:RightShoulder", "%Skeleton:RightUpperArm", "%Skeleton:Spine", "%Skeleton:UpperChest"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2jcla"]
+animation = &"mixamo/idle_(2)"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wr18j"]
+animation = &"mixamo/right_hook"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_42l1d"]
+animation = &"mixamo/uppercut"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6jybn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vimvf"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ghshe"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_671wp"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mo76n"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_84odl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ak604"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wr18j"]
+states/Start/position = Vector2(54, 100)
+states/mixamo_idle_(2)/node = SubResource("AnimationNodeAnimation_2jcla")
+states/mixamo_idle_(2)/position = Vector2(188, 100)
+states/mixamo_right_hook/node = SubResource("AnimationNodeAnimation_wr18j")
+states/mixamo_right_hook/position = Vector2(566, 188)
+states/mixamo_uppercut/node = SubResource("AnimationNodeAnimation_42l1d")
+states/mixamo_uppercut/position = Vector2(504, 6)
+transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_6jybn"), "mixamo_idle_(2)", "mixamo_right_hook", SubResource("AnimationNodeStateMachineTransition_vimvf"), "mixamo_right_hook", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_ghshe"), "mixamo_idle_(2)", "mixamo_uppercut", SubResource("AnimationNodeStateMachineTransition_671wp"), "mixamo_uppercut", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_mo76n"), "mixamo_uppercut", "mixamo_right_hook", SubResource("AnimationNodeStateMachineTransition_84odl"), "mixamo_right_hook", "mixamo_uppercut", SubResource("AnimationNodeStateMachineTransition_ak604")]
+graph_offset = Vector2(-128, -106)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_owt1q"]
+graph_offset = Vector2(-770.13, -139.306)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_u0ygc")
+nodes/Animation/position = Vector2(-1000, 580)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_m35m6")
+"nodes/Animation 2/position" = Vector2(-740, 140)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_7th4q")
+"nodes/Animation 3/position" = Vector2(-1000, 340)
+nodes/Blend2/node = SubResource("AnimationNodeBlend2_qwutr")
+nodes/Blend2/position = Vector2(80, -140)
+nodes/LowerBody/node = SubResource("AnimationNodeStateMachine_671wp")
+nodes/LowerBody/position = Vector2(-440, -80)
+nodes/OneShot/node = SubResource("AnimationNodeOneShot_vimvf")
+nodes/OneShot/position = Vector2(-260, 200)
+"nodes/OneShot 2/node" = SubResource("AnimationNodeOneShot_wr18j")
+"nodes/OneShot 2/position" = Vector2(-640, 360)
+nodes/UpperBody/node = SubResource("AnimationNodeStateMachine_wr18j")
+nodes/UpperBody/position = Vector2(-820, -80)
+nodes/output/position = Vector2(420, 80)
+node_connections = [&"OneShot", 0, &"LowerBody", &"OneShot", 1, &"OneShot 2", &"OneShot 2", 0, &"Animation 3", &"OneShot 2", 1, &"Animation", &"output", 0, &"OneShot"]
+
+[node name="t-pose_gopnik" instance=ExtResource("1_xevtu")]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, 0, 0, 0)
+script = ExtResource("2_g4yad")
+
+[node name="Skeleton" parent="Armature" index="0"]
+bones/8/rotation = Quaternion(0.499999, 0.500001, 0.499999, -0.500001)
+bones/18/rotation = Quaternion(1.81373e-10, 1.53811e-09, 1, -3.52157e-08)
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_j3hpi"),
+&"gopnik": SubResource("AnimationLibrary_76p2k")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+tree_root = SubResource("AnimationNodeBlendTree_owt1q")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Blend2/blend_amount = 1.0
+parameters/LowerBody/conditions/run = false
+parameters/LowerBody/conditions/walk = false
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+"parameters/OneShot 2/active" = false
+"parameters/OneShot 2/internal_active" = false
+"parameters/OneShot 2/request" = 0
