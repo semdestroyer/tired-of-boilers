@@ -5,6 +5,8 @@ extends CharacterBody3D
 
 @export var upperbodyStatePath: String = "parameters/UpperBody/playback"
 @export var lowerbodyStatePath: String = "parameters/LowerBody/playback"
+@export var progressBar: ProgressBar
+
 
 var upperbodyState
 var lowerbodyState
@@ -68,7 +70,9 @@ func _physics_process(delta: float) -> void:
 	translate(direction * 0.01)
 	if move_and_slide():
 		var collision = get_slide_collision(0)
-		print(collision)
+		if collision.get_collider().is_in_group("Punch"):
+			animTree["parameters/OneShot 3/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+			progressBar.value -= 20
 		
 var rotation_speed: float = 0.005
 func _unhandled_input(event: InputEvent) -> void:

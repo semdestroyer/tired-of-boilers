@@ -23,7 +23,7 @@ func _process(delta: float) -> void:
 					combo += 1
 				animTree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		
-		if position.distance_to((player as Node3D).global_position) < 0.3:
+		if position.distance_to((player as Node3D).global_position) < 0.2:
 			chasing = false
 			animTree.tree_root.get_node("OneShot").filter_enabled = false
 			lowerbodyState.travel("mixamo_idle_(2)")	
@@ -37,6 +37,6 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if chasing:
 		translate(Vector3.BACK * 0.01)
-		if move_and_slide():
-			var collision = get_slide_collision(0)
-			print(collision)
+		#if move_and_slide():
+			#var collision = get_slide_collision(0)
+			#print(collision)

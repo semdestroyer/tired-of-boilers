@@ -27,6 +27,7 @@ enabled=PackedStringArray("res://addons/mixamo_animation_retargeter/plugin.cfg")
 
 Player="Player Tag"
 Enemy="Enemy tag"
+Punch=""
 
 [input]
 
