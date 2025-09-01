@@ -1,0 +1,75 @@
+[gd_scene load_steps=15 format=3 uid="uid://b8mu0gmy2tghd"]
+
+[ext_resource type="Script" uid="uid://dfijwb34hbhpo" path="res://scripts/player_controls.gd" id="1_4mhck"]
+[ext_resource type="PackedScene" uid="uid://ctppjdrpm15cv" path="res://models/mihalkov/mihalkov.fbx" id="1_vhu6v"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://c7owh4wsyllk1" path="res://animations/mihalkov/new_main_scene.tres" id="2_4mhck"]
+[ext_resource type="Animation" uid="uid://bs2wupe0jrg0a" path="res://models/mihalkov/animations/idle_(2).res" id="3_4mhck"]
+[ext_resource type="Animation" uid="uid://dq2d84i03g3oy" path="res://models/mihalkov/animations/right_hook.res" id="4_o10w4"]
+[ext_resource type="Animation" uid="uid://cd0fsuqb005sn" path="res://models/mihalkov/animations/running_(1).res" id="5_s0bco"]
+[ext_resource type="Animation" uid="uid://cnkrjekk2n667" path="res://models/mihalkov/animations/uppercut.res" id="6_y61p8"]
+[ext_resource type="Animation" uid="uid://0atorx82f6p8" path="res://models/mihalkov/animations/walking_(1).res" id="7_l68ku"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4mhck"]
+radius = 0.0655104
+height = 0.292659
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4mhck"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o10w4"]
+_data = {
+&"idle_(2)": ExtResource("3_4mhck"),
+&"right_hook": ExtResource("4_o10w4"),
+&"running_(1)": ExtResource("5_s0bco"),
+&"uppercut": ExtResource("6_y61p8"),
+&"walking_(1)": ExtResource("7_l68ku")
+}
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ymvng"]
+
+[sub_resource type="Sky" id="Sky_4mhck"]
+sky_material = SubResource("ProceduralSkyMaterial_ymvng")
+
+[sub_resource type="Environment" id="Environment_4mhck"]
+background_mode = 2
+sky = SubResource("Sky_4mhck")
+
+[node name="Mihalkov" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_4mhck")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.155, 0)
+shape = SubResource("CapsuleShape3D_4mhck")
+
+[node name="audioPlayer" type="AudioStreamPlayer3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13082, 0)
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody3D"]
+root_node = NodePath("../mihalkov_model")
+tree_root = ExtResource("2_4mhck")
+anim_player = NodePath("../AnimationPlayer3")
+parameters/Blend2/blend_amount = 1.0
+parameters/LowerBody/conditions/run = false
+parameters/LowerBody/conditions/walk = false
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+"parameters/OneShot 2/active" = false
+"parameters/OneShot 2/internal_active" = false
+"parameters/OneShot 2/request" = 0
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="CharacterBody3D"]
+root_node = NodePath("../mihalkov_model")
+libraries = {
+&"": SubResource("AnimationLibrary_4mhck"),
+&"Mihalkov": SubResource("AnimationLibrary_o10w4")
+}
+
+[node name="mihalkov_model" parent="CharacterBody3D" instance=ExtResource("1_vhu6v")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="PlayerCamera" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(-0.992757, -0.0473271, 0.110422, 0, 0.919135, 0.393942, -0.120137, 0.391089, -0.912478, 0.0991662, 0.286349, -0.172419)
+environment = SubResource("Environment_4mhck")
+current = true

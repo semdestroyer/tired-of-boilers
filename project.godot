@@ -23,6 +23,11 @@ project/assembly_name="MihalkovBattle"
 
 enabled=PackedStringArray("res://addons/mixamo_animation_retargeter/plugin.cfg")
 
+[global_group]
+
+Player="Player Tag"
+Enemy="Enemy tag"
+
 [input]
 
 move_left={

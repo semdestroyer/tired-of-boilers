@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://c01bc0sh00eaw"]
+
+[ext_resource type="Script" uid="uid://652ceuqfcxud" path="res://scripts/new_gopnik_ai.gd" id="1_mgm5d"]
+[ext_resource type="PackedScene" uid="uid://jbchplj2oem5" path="res://models/gopnik/t-pose_gopnik.fbx" id="1_ncqc7"]
+[ext_resource type="Animation" uid="uid://cd0fsuqb005sn" path="res://models/mihalkov/animations/running_(1).res" id="2_5yx66"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://bg6c45ewmjgx6" path="res://animations/gopnik/new_main_scene.tres" id="2_mgm5d"]
+[ext_resource type="Animation" uid="uid://bs2wupe0jrg0a" path="res://models/mihalkov/animations/idle_(2).res" id="3_mgm5d"]
+[ext_resource type="Animation" uid="uid://dq2d84i03g3oy" path="res://models/mihalkov/animations/right_hook.res" id="4_3w6dn"]
+[ext_resource type="Animation" uid="uid://cnkrjekk2n667" path="res://models/mihalkov/animations/uppercut.res" id="5_hn2j4"]
+[ext_resource type="Animation" uid="uid://0atorx82f6p8" path="res://models/mihalkov/animations/walking_(1).res" id="6_5imva"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ncqc7"]
+radius = 0.0655104
+height = 0.292659
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5yx66"]
+_data = {
+&"idle_(2)": ExtResource("3_mgm5d"),
+&"right_hook": ExtResource("4_3w6dn"),
+&"running_(1)": ExtResource("2_5yx66"),
+&"uppercut": ExtResource("5_hn2j4"),
+&"walking_(1)": ExtResource("6_5imva")
+}
+
+[node name="Gopnik" type="Node3D" groups=["Enemy"]]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+script = ExtResource("1_mgm5d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.155, 0)
+shape = SubResource("CapsuleShape3D_ncqc7")
+
+[node name="gopnik_model" parent="CharacterBody3D" instance=ExtResource("1_ncqc7")]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, 7.98516e-05, 7.28369e-05, -2.4721e-05)
+
+[node name="AnimationTree" type="AnimationTree" parent="CharacterBody3D"]
+root_node = NodePath("../gopnik_model")
+tree_root = ExtResource("2_mgm5d")
+anim_player = NodePath("../AnimationPlayer2")
+parameters/Blend2/blend_amount = 1.0
+parameters/LowerBody/conditions/run = false
+parameters/LowerBody/conditions/walk = false
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+"parameters/OneShot 2/active" = false
+"parameters/OneShot 2/internal_active" = false
+"parameters/OneShot 2/request" = 0
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="CharacterBody3D"]
+root_node = NodePath("../gopnik_model")
+libraries = {
+&"gopnik": SubResource("AnimationLibrary_5yx66")
+}
+
+[node name="audioPlayer" type="AudioStreamPlayer3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98516e-05, 0.111427, -2.4721e-05)

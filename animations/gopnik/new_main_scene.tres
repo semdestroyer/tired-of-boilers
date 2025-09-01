@@ -1,26 +1,26 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=29 format=3 uid="uid://btcq2vtes5fvq"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=29 format=3 uid="uid://bg6c45ewmjgx6"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m35m6"]
 animation = &"mixamo/idle_(2)"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7th4q"]
-animation = &"Mihalkov/right_hook"
+animation = &"gopnik/right_hook"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u0ygc"]
-animation = &"Mihalkov/uppercut"
+animation = &"gopnik/uppercut"
 
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qwutr"]
 filter_enabled = true
 filters = ["%Skeleton:Chest", "%Skeleton:Head", "%Skeleton:Hips", "%Skeleton:LeftLowerArm", "%Skeleton:LeftShoulder", "%Skeleton:LeftUpperArm", "%Skeleton:Neck", "%Skeleton:RightLowerArm", "%Skeleton:RightShoulder", "%Skeleton:RightUpperArm", "%Skeleton:Spine", "%Skeleton:UpperChest"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qwutr"]
-animation = &"Mihalkov/idle_(2)"
+animation = &"gopnik/idle_(2)"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_671wp"]
-animation = &"Mihalkov/running_(1)"
+animation = &"gopnik/running_(1)"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mo76n"]
-animation = &"Mihalkov/walking_(1)"
+animation = &"gopnik/walking_(1)"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_42l1d"]
 advance_mode = 2
@@ -49,9 +49,9 @@ advance_condition = &"run"
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_671wp"]
 states/Start/position = Vector2(102, 90)
 states/mixamo_idle_(2)/node = SubResource("AnimationNodeAnimation_qwutr")
-states/mixamo_idle_(2)/position = Vector2(249, 90)
+states/mixamo_idle_(2)/position = Vector2(250, 90)
 states/mixamo_running_(1)/node = SubResource("AnimationNodeAnimation_671wp")
-states/mixamo_running_(1)/position = Vector2(323, -4)
+states/mixamo_running_(1)/position = Vector2(323, -3)
 states/mixamo_walking_(1)/node = SubResource("AnimationNodeAnimation_mo76n")
 states/mixamo_walking_(1)/position = Vector2(509, 90)
 transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_42l1d"), "mixamo_running_(1)", "mixamo_walking_(1)", SubResource("AnimationNodeStateMachineTransition_u0ygc"), "mixamo_walking_(1)", "mixamo_running_(1)", SubResource("AnimationNodeStateMachineTransition_7th4q"), "mixamo_idle_(2)", "mixamo_walking_(1)", SubResource("AnimationNodeStateMachineTransition_wr18j"), "mixamo_walking_(1)", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_qwutr"), "mixamo_running_(1)", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_2jcla"), "mixamo_idle_(2)", "mixamo_running_(1)", SubResource("AnimationNodeStateMachineTransition_m35m6")]
@@ -64,7 +64,7 @@ filter_enabled = true
 filters = ["%Skeleton:Chest", "%Skeleton:Head", "%Skeleton:Hips", "%Skeleton:LeftLowerArm", "%Skeleton:LeftShoulder", "%Skeleton:LeftUpperArm", "%Skeleton:Neck", "%Skeleton:RightLowerArm", "%Skeleton:RightShoulder", "%Skeleton:RightUpperArm", "%Skeleton:Spine", "%Skeleton:UpperChest"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2jcla"]
-animation = &"mixamo/idle_(2)"
+animation = &"gopnik/idle_(2)"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wr18j"]
 animation = &"mixamo/right_hook"
@@ -102,7 +102,7 @@ transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachin
 graph_offset = Vector2(-128, -106)
 
 [resource]
-graph_offset = Vector2(-890.864, -139)
+graph_offset = Vector2(-871.328, -93.7459)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_u0ygc")
 nodes/Animation/position = Vector2(-1000, 580)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_m35m6")

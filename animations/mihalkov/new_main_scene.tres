@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=29 format=3 uid="uid://btcq2vtes5fvq"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=29 format=3 uid="uid://c7owh4wsyllk1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m35m6"]
 animation = &"mixamo/idle_(2)"
@@ -102,7 +102,7 @@ transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachin
 graph_offset = Vector2(-128, -106)
 
 [resource]
-graph_offset = Vector2(-890.864, -139)
+graph_offset = Vector2(-1076.51, 71.345)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_u0ygc")
 nodes/Animation/position = Vector2(-1000, 580)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_m35m6")

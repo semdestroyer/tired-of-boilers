@@ -201,6 +201,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04673, 0, -2.53597)
 visible = false
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("14_42l1d")]
+upperbodyStatePath = null
+lowerbodyStatePath = null
 
 [node name="CharacterBody3D2" parent="." instance=ExtResource("15_2jcla")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65256, 0, -0.909603)
