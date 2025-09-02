@@ -10,7 +10,7 @@ extends CharacterBody3D
 @export var isAttacking: bool = false
 var gopnikCounter = 0
 
-
+var isDead = false
 var upperbodyState
 var lowerbodyState
 
@@ -22,6 +22,8 @@ func _ready() -> void:
 	lowerbodyState = animTree.get(lowerbodyStatePath) as AnimationNodeStateMachinePlayback
 
 func _process(delta: float) -> void:
+	if isDead:
+		return
 	if Input.is_action_just_pressed("move_left"):
 		animTree.tree_root.get_node("OneShot").filter_enabled = true
 		lowerbodyState.travel("mixamo_running_(1)")
@@ -65,6 +67,8 @@ func _process(delta: float) -> void:
 		direction.z = 0
 
 func _physics_process(delta: float) -> void:
+	if isDead:
+		return
 	translate(direction * 0.01)
 	move_and_slide()
 #	if move_and_slide():
@@ -74,6 +78,8 @@ func _physics_process(delta: float) -> void:
 		
 var rotation_speed: float = 0.005
 func _unhandled_input(event: InputEvent) -> void:
+	if isDead:
+		return
 	if event is InputEventMouseMotion:
 		var mouse_motion_event: InputEventMouseMotion = event as InputEventMouseMotion
 		rotation.y -= mouse_motion_event.relative.x * rotation_speed
@@ -81,11 +87,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		#rotation.x = clampf(rotation.x, PI/-2, PI/2)
 
 func getDamage(damage: int):
-	animTree["parameters/OneShot 3/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	if isDead:
+		return 
 	progressBar.value -= damage
+	if progressBar.value <= 0:
+		isDead = true
+		lowerbodyState.travel("mihalkov_death")
+	else:
+		animTree["parameters/OneShot 3/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
+	if isDead:
+		return
 	if body.is_in_group("Enemy") and isAttacking:
 		gopnikCounter += 1
 		gopnikCounterText.text = str("Наказано Гопников: ", gopnikCounter)

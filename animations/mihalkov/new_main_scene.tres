@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=31 format=3 uid="uid://c7owh4wsyllk1"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=33 format=3 uid="uid://c7owh4wsyllk1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m35m6"]
 animation = &"mixamo/idle_(2)"
@@ -15,6 +15,9 @@ animation = &"Mihalkov/uppercut"
 [sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_qwutr"]
 filter_enabled = true
 filters = ["%Skeleton:Chest", "%Skeleton:Head", "%Skeleton:Hips", "%Skeleton:LeftLowerArm", "%Skeleton:LeftShoulder", "%Skeleton:LeftUpperArm", "%Skeleton:Neck", "%Skeleton:RightLowerArm", "%Skeleton:RightShoulder", "%Skeleton:RightUpperArm", "%Skeleton:Spine", "%Skeleton:UpperChest"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_egrad"]
+animation = &"Mihalkov/death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qwutr"]
 animation = &"Mihalkov/idle_(2)"
@@ -49,16 +52,20 @@ advance_condition = &"walk"
 advance_mode = 2
 advance_condition = &"run"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yktpm"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_671wp"]
 states/Start/position = Vector2(102, 90)
+states/mihalkov_death/node = SubResource("AnimationNodeAnimation_egrad")
+states/mihalkov_death/position = Vector2(726, 90)
 states/mixamo_idle_(2)/node = SubResource("AnimationNodeAnimation_qwutr")
 states/mixamo_idle_(2)/position = Vector2(249, 90)
 states/mixamo_running_(1)/node = SubResource("AnimationNodeAnimation_671wp")
 states/mixamo_running_(1)/position = Vector2(323, -4)
 states/mixamo_walking_(1)/node = SubResource("AnimationNodeAnimation_mo76n")
-states/mixamo_walking_(1)/position = Vector2(509, 90)
-transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_42l1d"), "mixamo_running_(1)", "mixamo_walking_(1)", SubResource("AnimationNodeStateMachineTransition_u0ygc"), "mixamo_walking_(1)", "mixamo_running_(1)", SubResource("AnimationNodeStateMachineTransition_7th4q"), "mixamo_idle_(2)", "mixamo_walking_(1)", SubResource("AnimationNodeStateMachineTransition_wr18j"), "mixamo_walking_(1)", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_qwutr"), "mixamo_running_(1)", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_2jcla"), "mixamo_idle_(2)", "mixamo_running_(1)", SubResource("AnimationNodeStateMachineTransition_m35m6")]
-graph_offset = Vector2(-109, -49)
+states/mixamo_walking_(1)/position = Vector2(510, 90)
+transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_42l1d"), "mixamo_running_(1)", "mixamo_walking_(1)", SubResource("AnimationNodeStateMachineTransition_u0ygc"), "mixamo_walking_(1)", "mixamo_running_(1)", SubResource("AnimationNodeStateMachineTransition_7th4q"), "mixamo_idle_(2)", "mixamo_walking_(1)", SubResource("AnimationNodeStateMachineTransition_wr18j"), "mixamo_walking_(1)", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_qwutr"), "mixamo_running_(1)", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachineTransition_2jcla"), "mixamo_idle_(2)", "mixamo_running_(1)", SubResource("AnimationNodeStateMachineTransition_m35m6"), "mixamo_walking_(1)", "mihalkov_death", SubResource("AnimationNodeStateMachineTransition_yktpm")]
+graph_offset = Vector2(196, -33)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_wr18j"]
 
@@ -107,7 +114,7 @@ transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachin
 graph_offset = Vector2(-128, -106)
 
 [resource]
-graph_offset = Vector2(-867.086, -257.101)
+graph_offset = Vector2(-891.939, -179.565)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_u0ygc")
 nodes/Animation/position = Vector2(-1000, 580)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_m35m6")
