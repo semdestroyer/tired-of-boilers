@@ -1,10 +1,13 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=29 format=3 uid="uid://bg6c45ewmjgx6"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=31 format=3 uid="uid://bg6c45ewmjgx6"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m35m6"]
 animation = &"mixamo/idle_(2)"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7th4q"]
 animation = &"gopnik/right_hook"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5crs"]
+animation = &"gopnik/dying_backwards"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u0ygc"]
 animation = &"gopnik/uppercut"
@@ -59,6 +62,8 @@ graph_offset = Vector2(-109, -49)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_wr18j"]
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_fqcy6"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_vimvf"]
 filter_enabled = true
 filters = ["%Skeleton:Chest", "%Skeleton:Head", "%Skeleton:Hips", "%Skeleton:LeftLowerArm", "%Skeleton:LeftShoulder", "%Skeleton:LeftUpperArm", "%Skeleton:Neck", "%Skeleton:RightLowerArm", "%Skeleton:RightShoulder", "%Skeleton:RightUpperArm", "%Skeleton:Spine", "%Skeleton:UpperChest"]
@@ -102,22 +107,26 @@ transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachin
 graph_offset = Vector2(-128, -106)
 
 [resource]
-graph_offset = Vector2(-871.328, -93.7459)
+graph_offset = Vector2(-838.569, -34.2935)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_u0ygc")
 nodes/Animation/position = Vector2(-1000, 580)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_m35m6")
-"nodes/Animation 2/position" = Vector2(-740, 140)
+"nodes/Animation 2/position" = Vector2(-1220, 40)
 "nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_7th4q")
 "nodes/Animation 3/position" = Vector2(-1000, 340)
+"nodes/Animation 4/node" = SubResource("AnimationNodeAnimation_d5crs")
+"nodes/Animation 4/position" = Vector2(-960, 140)
 nodes/Blend2/node = SubResource("AnimationNodeBlend2_qwutr")
 nodes/Blend2/position = Vector2(80, -140)
 nodes/LowerBody/node = SubResource("AnimationNodeStateMachine_671wp")
-nodes/LowerBody/position = Vector2(-440, -80)
+nodes/LowerBody/position = Vector2(-920, -160)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_vimvf")
 nodes/OneShot/position = Vector2(-260, 200)
 "nodes/OneShot 2/node" = SubResource("AnimationNodeOneShot_wr18j")
 "nodes/OneShot 2/position" = Vector2(-640, 360)
+"nodes/OneShot 3/node" = SubResource("AnimationNodeOneShot_fqcy6")
+"nodes/OneShot 3/position" = Vector2(-540, -140)
 nodes/UpperBody/node = SubResource("AnimationNodeStateMachine_wr18j")
-nodes/UpperBody/position = Vector2(-820, -80)
+nodes/UpperBody/position = Vector2(-1300, -180)
 nodes/output/position = Vector2(420, 80)
-node_connections = [&"OneShot", 0, &"LowerBody", &"OneShot", 1, &"OneShot 2", &"OneShot 2", 0, &"Animation 3", &"OneShot 2", 1, &"Animation", &"output", 0, &"OneShot"]
+node_connections = [&"OneShot", 0, &"OneShot 3", &"OneShot", 1, &"OneShot 2", &"OneShot 2", 0, &"Animation 3", &"OneShot 2", 1, &"Animation", &"OneShot 3", 0, &"LowerBody", &"OneShot 3", 1, &"Animation 4", &"output", 0, &"OneShot"]

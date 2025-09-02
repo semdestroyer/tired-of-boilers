@@ -6,13 +6,15 @@ extends CharacterBody3D
 @export var upperbodyStatePath: String = "parameters/UpperBody/playback"
 @export var lowerbodyStatePath: String = "parameters/LowerBody/playback"
 @export var progressBar: ProgressBar
+@export var gopnikCounterText: RichTextLabel
+@export var isAttacking: bool = false
+var gopnikCounter = 0
 
 
 var upperbodyState
 var lowerbodyState
 
 var direction = Vector3.ZERO
-var isAttacking = false
 var combo = 0
 
 func _ready() -> void:
@@ -43,10 +45,8 @@ func _process(delta: float) -> void:
 		else:
 			animTree["parameters/OneShot 2/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 			combo += 1
-		isAttacking = true	
 		animTree["parameters/Blend2/blend_amount"] = 1.0
 		animTree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-		
 	if Input.is_action_just_released("move_left"):
 		animTree.tree_root.get_node("OneShot").filter_enabled = false
 		lowerbodyState.travel("mixamo_idle_(2)")
@@ -63,16 +63,14 @@ func _process(delta: float) -> void:
 		animTree.tree_root.get_node("OneShot").filter_enabled = false
 		lowerbodyState.travel("mixamo_idle_(2)")
 		direction.z = 0
-	if Input.is_action_just_released("attack"):
-		isAttacking = false
 
 func _physics_process(delta: float) -> void:
 	translate(direction * 0.01)
-	if move_and_slide():
-		var collision = get_slide_collision(0)
-		if collision.get_collider().is_in_group("Punch"):
-			animTree["parameters/OneShot 3/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-			progressBar.value -= 20
+	move_and_slide()
+#	if move_and_slide():
+		#var collision = get_slide_collision(0)
+		#if collision.get_collider().is_in_group("Punch"):
+			
 		
 var rotation_speed: float = 0.005
 func _unhandled_input(event: InputEvent) -> void:
@@ -81,3 +79,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotation.y -= mouse_motion_event.relative.x * rotation_speed
 		#rotation.x -= mouse_motion_event.relative.y * rotation_speed
 		#rotation.x = clampf(rotation.x, PI/-2, PI/2)
+
+func getDamage(damage: int):
+	animTree["parameters/OneShot 3/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	progressBar.value -= damage
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("Enemy") and isAttacking:
+		gopnikCounter += 1
+		gopnikCounterText.text = str("Наказано Гопников: ", gopnikCounter)
+		body.getDamage(10)
+	
