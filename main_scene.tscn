@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://b6idyvwv74pg8"]
+[gd_scene load_steps=25 format=3 uid="uid://b6idyvwv74pg8"]
 
 [ext_resource type="Script" uid="uid://dchayh2lrmigb" path="res://player_controls.gd" id="1_0f027"]
 [ext_resource type="Theme" uid="uid://dgcn3mkogk5i2" path="res://ui/theme.tres" id="1_2c62f"]
+[ext_resource type="Shader" uid="uid://c5uq5lm5b0ndp" path="res://shader/color_correction.gdshader" id="2_2jcla"]
 [ext_resource type="AudioStream" uid="uid://kck8tpjdxsge" path="res://audio/cutscene/dialog.mp3" id="2_wr18j"]
 [ext_resource type="PackedScene" uid="uid://ctppjdrpm15cv" path="res://models/mihalkov/mihalkov.fbx" id="3_66tet"]
 [ext_resource type="Animation" uid="uid://bs2wupe0jrg0a" path="res://models/mihalkov/animations/idle_(2).res" id="4_7ycvg"]
@@ -14,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://b8mu0gmy2tghd" path="res://prefabs/mihalkov.tscn" id="11_671wp"]
 [ext_resource type="PackedScene" uid="uid://bbn68itugq8v1" path="res://prefabs/character/mihlkv.tscn" id="14_42l1d"]
 [ext_resource type="PackedScene" uid="uid://dalam3wn0oi6t" path="res://prefabs/character/gopnik.tscn" id="15_2jcla"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m35m6"]
+shader = ExtResource("2_2jcla")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3jxj"]
 
@@ -114,6 +118,15 @@ theme = ExtResource("1_2c62f")
 value = 100.0
 rounded = true
 fill_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_m35m6")
+anchors_preset = -1
+anchor_right = 0.999
+anchor_bottom = 1.0
+offset_right = 0.151855
+mouse_filter = 1
 
 [node name="CinematicCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.07534, 0.306704, -7.13385)

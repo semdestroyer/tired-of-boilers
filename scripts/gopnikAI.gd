@@ -22,7 +22,7 @@ func _process(delta: float) -> void:
 					combo += 1
 				animTree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 		
-		if position.distance_to((player as Node3D).position) < 0.3:
+		if position.distance_to((player as Node3D).position) < 0.1:
 			chasing = false
 			animTree.tree_root.get_node("OneShot").filter_enabled = false
 			lowerbodyState.travel("mixamo_idle_(2)")	

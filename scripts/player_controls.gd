@@ -65,6 +65,7 @@ func _process(delta: float) -> void:
 		animTree.tree_root.get_node("OneShot").filter_enabled = false
 		lowerbodyState.travel("mixamo_idle_(2)")
 		direction.z = 0
+	#if Input.is_action_just_released("move_left") and Input.is_action_just_released("move_right") and Input.is_action_just_released("move_forward") and Input.is_action_just_released("move_backward"):
 
 func _physics_process(delta: float) -> void:
 	if isDead:
