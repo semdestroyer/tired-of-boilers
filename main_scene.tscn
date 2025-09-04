@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://b6idyvwv74pg8"]
+[gd_scene load_steps=29 format=3 uid="uid://b6idyvwv74pg8"]
 
 [ext_resource type="Script" uid="uid://dchayh2lrmigb" path="res://player_controls.gd" id="1_0f027"]
 [ext_resource type="Theme" uid="uid://dgcn3mkogk5i2" path="res://ui/theme.tres" id="1_2c62f"]
+[ext_resource type="Texture2D" uid="uid://o2fcmnmyjpeu" path="res://textures/sky.png" id="1_m35m6"]
 [ext_resource type="Shader" uid="uid://c5uq5lm5b0ndp" path="res://shader/color_correction.gdshader" id="2_2jcla"]
 [ext_resource type="AudioStream" uid="uid://kck8tpjdxsge" path="res://audio/cutscene/dialog.mp3" id="2_wr18j"]
 [ext_resource type="PackedScene" uid="uid://ctppjdrpm15cv" path="res://models/mihalkov/mihalkov.fbx" id="3_66tet"]
@@ -16,13 +17,25 @@
 [ext_resource type="PackedScene" uid="uid://bbn68itugq8v1" path="res://prefabs/character/mihlkv.tscn" id="14_42l1d"]
 [ext_resource type="PackedScene" uid="uid://dalam3wn0oi6t" path="res://prefabs/character/gopnik.tscn" id="15_2jcla"]
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u0ygc"]
+panorama = ExtResource("1_m35m6")
+
+[sub_resource type="Sky" id="Sky_7th4q"]
+sky_material = SubResource("PanoramaSkyMaterial_u0ygc")
+
+[sub_resource type="Environment" id="Environment_6jybn"]
+background_mode = 2
+sky = SubResource("Sky_7th4q")
+tonemap_mode = 2
+glow_enabled = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m35m6"]
 shader = ExtResource("2_2jcla")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o3jxj"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_84odl"]
 
 [sub_resource type="Sky" id="Sky_qwutr"]
-sky_material = SubResource("ProceduralSkyMaterial_o3jxj")
+sky_material = SubResource("PanoramaSkyMaterial_84odl")
 
 [sub_resource type="Environment" id="Environment_o3jxj"]
 background_mode = 2
@@ -91,6 +104,9 @@ size = Vector3(1, 2.70337, 1)
 
 [node name="Node3D" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6jybn")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
@@ -145,7 +161,8 @@ size = Vector3(30, 0.07, 40)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.803919, 0.594739, 0, -0.594739, 0.803919, 0, 3.59519, 0)
-light_energy = 2.131
+light_color = Color(0.973062, 0.987708, 0.713159, 1)
+light_energy = 1.15
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.425888, -4.13641)

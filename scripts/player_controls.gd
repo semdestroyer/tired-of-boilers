@@ -16,11 +16,10 @@ var lowerbodyState
 
 var direction = Vector3.ZERO
 var combo = 0
-
+var template: String
 func _ready() -> void:
 	upperbodyState = animTree.get(upperbodyStatePath) as AnimationNodeStateMachinePlayback
 	lowerbodyState = animTree.get(lowerbodyStatePath) as AnimationNodeStateMachinePlayback
-
 func _process(delta: float) -> void:
 	if isDead:
 		return
@@ -103,6 +102,6 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		return
 	if body.is_in_group("Enemy") and isAttacking:
 		gopnikCounter += 1
-		gopnikCounterText.text = str("Наказано Гопников: ", gopnikCounter)
+		gopnikCounterText.text = str("[outline_size=10]Наказано Гопников: ", gopnikCounter, "[/outline_size]")
 		body.getDamage(10)
 	

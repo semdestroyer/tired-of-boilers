@@ -1,0 +1,230 @@
+[gd_scene load_steps=30 format=3 uid="uid://d2u3wascakju"]
+
+[ext_resource type="Texture2D" uid="uid://o2fcmnmyjpeu" path="res://textures/sky.png" id="1_rjtee"]
+[ext_resource type="Theme" uid="uid://dgcn3mkogk5i2" path="res://ui/theme.tres" id="2_1idop"]
+[ext_resource type="Shader" uid="uid://c5uq5lm5b0ndp" path="res://shader/color_correction.gdshader" id="3_beq0j"]
+[ext_resource type="AudioStream" uid="uid://kck8tpjdxsge" path="res://audio/cutscene/dialog.mp3" id="4_nauge"]
+[ext_resource type="PackedScene" uid="uid://ctppjdrpm15cv" path="res://models/mihalkov/mihalkov.fbx" id="5_ycv2e"]
+[ext_resource type="Script" uid="uid://dchayh2lrmigb" path="res://player_controls.gd" id="6_c5gc3"]
+[ext_resource type="AnimationNodeBlendTree" uid="uid://cy0gf5xjpqv35" path="res://animations/mihalkov/main_scene.tres" id="7_6e4cv"]
+[ext_resource type="Animation" uid="uid://bs2wupe0jrg0a" path="res://models/mihalkov/animations/idle_(2).res" id="8_uuy0h"]
+[ext_resource type="Animation" uid="uid://dq2d84i03g3oy" path="res://models/mihalkov/animations/right_hook.res" id="9_52iny"]
+[ext_resource type="Animation" uid="uid://cd0fsuqb005sn" path="res://models/mihalkov/animations/running_(1).res" id="10_nxqqj"]
+[ext_resource type="Animation" uid="uid://cnkrjekk2n667" path="res://models/mihalkov/animations/uppercut.res" id="11_7nyxr"]
+[ext_resource type="Animation" uid="uid://0atorx82f6p8" path="res://models/mihalkov/animations/walking_(1).res" id="12_43lh3"]
+[ext_resource type="PackedScene" uid="uid://dtjcenpgsw51w" path="res://prefabs/old/blind_gopnik.tscn" id="13_5le63"]
+[ext_resource type="PackedScene" uid="uid://b8mu0gmy2tghd" path="res://prefabs/mihalkov.tscn" id="14_pieet"]
+[ext_resource type="PackedScene" uid="uid://bbn68itugq8v1" path="res://prefabs/character/mihlkv.tscn" id="15_qiqrj"]
+[ext_resource type="PackedScene" uid="uid://dalam3wn0oi6t" path="res://prefabs/character/gopnik.tscn" id="16_xm42n"]
+[ext_resource type="PackedScene" uid="uid://c8j8edkoe4484" path="res://models/map/buildings/plane.fbx" id="17_ls4ot"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u0ygc"]
+panorama = ExtResource("1_rjtee")
+
+[sub_resource type="Sky" id="Sky_7th4q"]
+sky_material = SubResource("PanoramaSkyMaterial_u0ygc")
+
+[sub_resource type="Environment" id="Environment_6jybn"]
+background_mode = 2
+sky = SubResource("Sky_7th4q")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m35m6"]
+shader = ExtResource("3_beq0j")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_84odl"]
+
+[sub_resource type="Sky" id="Sky_qwutr"]
+sky_material = SubResource("PanoramaSkyMaterial_84odl")
+
+[sub_resource type="Environment" id="Environment_o3jxj"]
+background_mode = 2
+sky = SubResource("Sky_qwutr")
+
+[sub_resource type="Animation" id="Animation_7ycvg"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CinematicCamera")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -2.07534, 0.306704, -7.13385)
+
+[sub_resource type="Animation" id="Animation_0f027"]
+resource_name = "intro_cutscene"
+length = 64.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CutsceneAudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_nauge")
+}],
+"times": PackedFloat32Array(0.0333328)
+}
+tracks/0/use_blend = true
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CinematicCamera")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0.0666667, 1, 0, -0.483641, 0, 0.875266, 7.1, 1, 0, 0.899824, 0, -0.436252)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CinematicCamera")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0.0666667, 1, -2.09324, 0.260683, -7.52754, 7.1, 1, -2.11135, 0.260683, -7.7206)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2c62f"]
+_data = {
+&"RESET": SubResource("Animation_7ycvg"),
+&"intro_cutscene": SubResource("Animation_0f027")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wr18j"]
+_data = {
+&"idle_(2)": ExtResource("8_uuy0h"),
+&"right_hook": ExtResource("9_52iny"),
+&"running_(1)": ExtResource("10_nxqqj"),
+&"uppercut": ExtResource("11_7nyxr"),
+&"walking_(1)": ExtResource("12_43lh3")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_66tet"]
+size = Vector3(1, 2.70337, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6jybn")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.536
+anchor_right = 0.536
+offset_left = -423.472
+offset_top = 3.0
+offset_right = 457.528
+offset_bottom = 117.0
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "[outline_size=10]Наказано Гопников: 0[/outline_size]"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.429
+anchor_right = 1.0
+anchor_bottom = 0.429
+offset_left = -96.0
+offset_top = 3.008
+offset_right = -16.0
+offset_bottom = 288.008
+theme = ExtResource("2_1idop")
+value = 100.0
+rounded = true
+fill_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_m35m6")
+anchors_preset = -1
+anchor_right = 0.999
+anchor_bottom = 1.0
+offset_right = 0.151855
+mouse_filter = 1
+
+[node name="CinematicCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.07534, 0.306704, -7.13385)
+environment = SubResource("Environment_o3jxj")
+fov = 30.0
+
+[node name="CutscenePlayer" type="AnimationPlayer" parent="CinematicCamera"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_2c62f")
+}
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.803919, 0.594739, 0, -0.594739, 0.803919, 0, 3.59519, 0)
+light_color = Color(0.973062, 0.987708, 0.713159, 1)
+light_energy = 1.15
+
+[node name="CutsceneAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="mihalkov" parent="." instance=ExtResource("5_ycv2e")]
+transform = Transform3D(-0.0999137, 0, -0.00415268, 0, 0.1, 0, 0.00415268, 0, -0.0999137, -1.90404, 0, -7.55555)
+visible = false
+script = ExtResource("6_c5gc3")
+
+[node name="AnimationTree" type="AnimationTree" parent="mihalkov"]
+tree_root = ExtResource("7_6e4cv")
+anim_player = NodePath("../AnimationPlayer2")
+parameters/Blend2/blend_amount = 1.0
+parameters/LowerBody/conditions/run = false
+parameters/LowerBody/conditions/walk = false
+parameters/OneShot/active = false
+parameters/OneShot/internal_active = false
+parameters/OneShot/request = 0
+"parameters/OneShot 2/active" = false
+"parameters/OneShot 2/internal_active" = false
+"parameters/OneShot 2/request" = 0
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="mihalkov"]
+libraries = {
+&"mixamo": SubResource("AnimationLibrary_wr18j")
+}
+
+[node name="PlayerCamera" type="Camera3D" parent="mihalkov"]
+transform = Transform3D(-9.92757, -0.47327, 1.10422, 0, 9.19135, 3.93942, -1.20137, 3.91089, -9.12478, 0.529694, 2.78494, -2.03525)
+environment = SubResource("Environment_o3jxj")
+current = true
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="mihalkov"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81971, 0.134626)
+visible = false
+emission_shape = 1
+emission_sphere_radius = 1.0
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="mihalkov"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0436592, -5.96046e-07, 0.00932598)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="mihalkov/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34509, 0)
+shape = SubResource("BoxShape3D_66tet")
+
+[node name="audioPlayer" type="AudioStreamPlayer3D" parent="mihalkov"]
+transform = Transform3D(10, 0, -2.98023e-08, 0, 10, 0, 0, 0, 10, 0, 1.75708, 0)
+
+[node name="t-pose_gopnik3" parent="." instance=ExtResource("13_5le63")]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, -1.91103, 0.00524616, -7.68195)
+visible = false
+
+[node name="Mihalkov" parent="." instance=ExtResource("14_pieet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04673, 0, -2.53597)
+visible = false
+
+[node name="CharacterBody3D" parent="." node_paths=PackedStringArray("progressBar", "gopnikCounterText") instance=ExtResource("15_qiqrj")]
+progressBar = NodePath("../CanvasLayer/ProgressBar")
+gopnikCounterText = NodePath("../CanvasLayer/RichTextLabel")
+
+[node name="CharacterBody3D3" parent="." instance=ExtResource("16_xm42n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30512, 0, -1.81921)
+
+[node name="CharacterBody3D2" parent="." instance=ExtResource("16_xm42n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65256, 0, -0.909603)
+
+[node name="plane" parent="." instance=ExtResource("17_ls4ot")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -8.38024, -9.53674e-07, 0.686475)

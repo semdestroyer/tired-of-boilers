@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://bbn68itugq8v1"]
+[gd_scene load_steps=34 format=4 uid="uid://bbn68itugq8v1"]
 
 [ext_resource type="Script" uid="uid://dfijwb34hbhpo" path="res://scripts/player_controls.gd" id="1_imuup"]
 [ext_resource type="AnimationNodeBlendTree" uid="uid://c7owh4wsyllk1" path="res://animations/mihalkov/new_main_scene.tres" id="2_vsr81"]
@@ -277,7 +277,7 @@ bind/24/bone = -1
 bind/24/pose = Transform3D(-98.6709, 9.91638, 12.8731, 12.8215, -1.159, 99.1679, 9.98307, 99.5004, -0.127818, -0.241588, -0.223771, 0.0194673)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d5xau"]
-radius = 0.178315
+radius = 0.259841
 height = 0.572942
 
 [sub_resource type="Animation" id="Animation_pa6mq"]
@@ -359,15 +359,6 @@ _data = {
 &"Armature|Armature|mixamo_com|Layer0_001": SubResource("Animation_kl2bc"),
 &"Armature|mixamo_com|Layer0_001": SubResource("Animation_5gtk8")
 }
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_m35m6"]
-
-[sub_resource type="Sky" id="Sky_u0ygc"]
-sky_material = SubResource("ProceduralSkyMaterial_m35m6")
-
-[sub_resource type="Environment" id="Environment_7th4q"]
-background_mode = 2
-sky = SubResource("Sky_u0ygc")
 
 [node name="CharacterBody3D" type="CharacterBody3D" groups=["Player"]]
 top_level = true
@@ -644,7 +635,6 @@ libraries = {
 
 [node name="PlayerCamera" type="Camera3D" parent="."]
 transform = Transform3D(-0.992757, -0.0473271, 0.110422, 0, 0.919135, 0.393942, -0.120137, 0.391089, -0.912478, 0.0991662, 0.286349, -0.172419)
-environment = SubResource("Environment_7th4q")
 current = true
 
 [connection signal="body_entered" from="mihalkov_model/Armature/Skeleton/BoneAttachment3D/Area3D" to="." method="_on_area_3d_body_entered"]

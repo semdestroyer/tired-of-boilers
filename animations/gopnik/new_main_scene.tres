@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeBlendTree" load_steps=31 format=3 uid="uid://bg6c45ewmjgx6"]
+[gd_resource type="AnimationNodeBlendTree" load_steps=32 format=3 uid="uid://bg6c45ewmjgx6"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m35m6"]
 animation = &"mixamo/idle_(2)"
@@ -68,6 +68,8 @@ graph_offset = Vector2(-109, -49)
 filter_enabled = true
 filters = ["%Skeleton:Chest", "%Skeleton:Head", "%Skeleton:Hips", "%Skeleton:LeftLowerArm", "%Skeleton:LeftShoulder", "%Skeleton:LeftUpperArm", "%Skeleton:Neck", "%Skeleton:RightLowerArm", "%Skeleton:RightShoulder", "%Skeleton:RightUpperArm", "%Skeleton:Spine", "%Skeleton:UpperChest"]
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_d5crs"]
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2jcla"]
 animation = &"gopnik/idle_(2)"
 
@@ -107,7 +109,7 @@ transitions = ["Start", "mixamo_idle_(2)", SubResource("AnimationNodeStateMachin
 graph_offset = Vector2(-128, -106)
 
 [resource]
-graph_offset = Vector2(-838.569, -34.2935)
+graph_offset = Vector2(-1007.53, -25.7849)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_u0ygc")
 nodes/Animation/position = Vector2(-1000, 580)
 "nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_m35m6")
@@ -126,7 +128,9 @@ nodes/OneShot/position = Vector2(-260, 200)
 "nodes/OneShot 2/position" = Vector2(-640, 360)
 "nodes/OneShot 3/node" = SubResource("AnimationNodeOneShot_fqcy6")
 "nodes/OneShot 3/position" = Vector2(-540, -140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_d5crs")
+nodes/TimeScale/position = Vector2(-620, 140)
 nodes/UpperBody/node = SubResource("AnimationNodeStateMachine_wr18j")
 nodes/UpperBody/position = Vector2(-1300, -180)
 nodes/output/position = Vector2(420, 80)
-node_connections = [&"OneShot", 0, &"OneShot 3", &"OneShot", 1, &"OneShot 2", &"OneShot 2", 0, &"Animation 3", &"OneShot 2", 1, &"Animation", &"OneShot 3", 0, &"LowerBody", &"OneShot 3", 1, &"Animation 4", &"output", 0, &"OneShot"]
+node_connections = [&"OneShot", 0, &"OneShot 3", &"OneShot", 1, &"OneShot 2", &"OneShot 2", 0, &"Animation 3", &"OneShot 2", 1, &"Animation", &"OneShot 3", 0, &"LowerBody", &"OneShot 3", 1, &"TimeScale", &"TimeScale", 0, &"Animation 4", &"output", 0, &"OneShot"]

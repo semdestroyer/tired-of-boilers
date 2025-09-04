@@ -57,7 +57,9 @@ func getDamage(damage: int):
 	if isDying: 
 		return
 	remove_from_group("Enemy")
-	animTree["parameters/OneShot 3/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	#animTree["parameters/OneShot 3/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+	anim.speed_scale = 2
+	anim.play("gopnik/dying_backwards")
 	isDying = true
 	await get_tree().create_timer(4).timeout
 	queue_free()
