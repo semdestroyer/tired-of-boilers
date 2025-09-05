@@ -12,13 +12,13 @@ func _ready() -> void:
 
 var combo = 0
 var chasing
-
+#var attackCooldown = 0.5
 func _process(delta: float) -> void:
 	if isDying:
 		return
 	for player in get_tree().get_nodes_in_group("Player"):
 		look_at((player as Node3D).position,Vector3.UP, true)
-		if position.distance_to((player as Node3D).global_position) < 0.5:
+		if position.distance_to((player as Node3D).global_position) < 0.5 and $AttackCooldown.is_stopped():
 			if !animTree.get("parameters/OneShot/active"):
 				if combo == 1:
 					animTree["parameters/OneShot 2/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
@@ -27,7 +27,8 @@ func _process(delta: float) -> void:
 					animTree["parameters/OneShot 2/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
 					combo += 1
 				animTree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
-		if position.distance_to((player as Node3D).global_position) < 0.2:
+				$AttackCooldown.start()
+		if position.distance_to((player as Node3D).global_position) < 0.15:
 			chasing = false
 			animTree.tree_root.get_node("OneShot").filter_enabled = false
 			lowerbodyState.travel("mixamo_idle_(2)")	

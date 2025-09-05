@@ -231,6 +231,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04673, 0, -2.53597)
 visible = false
 
 [node name="CharacterBody3D" parent="." node_paths=PackedStringArray("progressBar", "gopnikCounterText") instance=ExtResource("14_42l1d")]
+upperbodyStatePath = "parameters/UpperBody/playback"
+lowerbodyStatePath = "parameters/LowerBody/playback"
 progressBar = NodePath("../CanvasLayer/ProgressBar")
 gopnikCounterText = NodePath("../CanvasLayer/RichTextLabel")
 

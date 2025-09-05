@@ -17,6 +17,7 @@ var lowerbodyState
 var direction = Vector3.ZERO
 var combo = 0
 var template: String
+var targetRot = 0
 func _ready() -> void:
 	upperbodyState = animTree.get(upperbodyStatePath) as AnimationNodeStateMachinePlayback
 	lowerbodyState = animTree.get(lowerbodyStatePath) as AnimationNodeStateMachinePlayback
@@ -27,18 +28,30 @@ func _process(delta: float) -> void:
 		animTree.tree_root.get_node("OneShot").filter_enabled = true
 		lowerbodyState.travel("mixamo_running_(1)")
 		direction.x = 1
+		#TODO: переделать немного, чтобы правильно располагал
+		targetRot = 90
+		
 	if Input.is_action_just_pressed("move_right"):
 		animTree.tree_root.get_node("OneShot").filter_enabled = true
 		lowerbodyState.travel("mixamo_running_(1)")
 		direction.x = -1
+	
+		targetRot = 180
+		
 	if Input.is_action_just_pressed("move_forward"):
 		animTree.tree_root.get_node("OneShot").filter_enabled = true
 		lowerbodyState.travel("mixamo_running_(1)")
 		direction.z = 1
+		
+		targetRot = 270
+		
 	if Input.is_action_just_pressed("move_backward"):
 		animTree.tree_root.get_node("OneShot").filter_enabled = true
 		lowerbodyState.travel("mixamo_running_(1)")
 		direction.z = -1
+		
+		targetRot = 360
+		
 	if Input.is_action_just_pressed("attack"):
 		if combo == 1:
 			animTree["parameters/OneShot 2/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT
@@ -70,6 +83,7 @@ func _physics_process(delta: float) -> void:
 	if isDead:
 		return
 	translate(direction * 0.01)
+	$mihalkov_model.rotation.y = lerp_angle($mihalkov_model.rotation.y, targetRot, 0.1)
 	move_and_slide()
 #	if move_and_slide():
 		#var collision = get_slide_collision(0)
