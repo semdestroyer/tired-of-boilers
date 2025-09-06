@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d2u3wascakju"]
+[gd_scene load_steps=38 format=3 uid="uid://d2u3wascakju"]
 
 [ext_resource type="Texture2D" uid="uid://o2fcmnmyjpeu" path="res://textures/sky.png" id="1_rjtee"]
 [ext_resource type="Theme" uid="uid://dgcn3mkogk5i2" path="res://ui/theme.tres" id="2_1idop"]
@@ -16,7 +16,14 @@
 [ext_resource type="PackedScene" uid="uid://b8mu0gmy2tghd" path="res://prefabs/mihalkov.tscn" id="14_pieet"]
 [ext_resource type="PackedScene" uid="uid://bbn68itugq8v1" path="res://prefabs/character/mihlkv.tscn" id="15_qiqrj"]
 [ext_resource type="PackedScene" uid="uid://dalam3wn0oi6t" path="res://prefabs/character/gopnik.tscn" id="16_xm42n"]
-[ext_resource type="PackedScene" uid="uid://c8j8edkoe4484" path="res://models/map/buildings/plane.fbx" id="17_ls4ot"]
+[ext_resource type="PackedScene" uid="uid://c8j8edkoe4484" path="res://models/map/plane.fbx" id="17_ls4ot"]
+[ext_resource type="PackedScene" uid="uid://l3d8ljux5xan" path="res://prefabs/buildings/toilet.tscn" id="18_tx362"]
+[ext_resource type="PackedScene" uid="uid://bont4q0d2e366" path="res://prefabs/buildings/house.tscn" id="19_l7nqg"]
+[ext_resource type="PackedScene" uid="uid://nqx808siv0pg" path="res://prefabs/buildings/house_2.tscn" id="20_w7ck5"]
+[ext_resource type="PackedScene" uid="uid://bq3n8hf2vsm2" path="res://models/map/planebig.fbx" id="21_2nn5w"]
+[ext_resource type="PackedScene" uid="uid://7yag13bmvvmv" path="res://prefabs/trains/cart_0.tscn" id="22_ou4v7"]
+[ext_resource type="PackedScene" uid="uid://ifiujqd3j3n1" path="res://prefabs/trains/cart_2.tscn" id="23_53hnx"]
+[ext_resource type="PackedScene" uid="uid://dfb4c08jy1mgj" path="res://prefabs/trains/cart_4.tscn" id="24_mxqdg"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_u0ygc"]
 panorama = ExtResource("1_rjtee")
@@ -103,6 +110,9 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_66tet"]
 size = Vector3(1, 2.70337, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_2nn5w"]
+size = Vector3(21.1865, 3.68835, 1.16113)
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -159,8 +169,8 @@ libraries = {
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.803919, 0.594739, 0, -0.594739, 0.803919, 0, 3.59519, 0)
-light_color = Color(0.973062, 0.987708, 0.713159, 1)
-light_energy = 1.15
+light_color = Color(0.972549, 0.988235, 0.564706, 1)
+light_energy = 1.473
 
 [node name="CutsceneAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
@@ -217,8 +227,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.04673, 0, -2.53597)
 visible = false
 
 [node name="CharacterBody3D" parent="." node_paths=PackedStringArray("progressBar", "gopnikCounterText") instance=ExtResource("15_qiqrj")]
-upperbodyStatePath = "parameters/UpperBody/playback"
-lowerbodyStatePath = "parameters/LowerBody/playback"
 progressBar = NodePath("../CanvasLayer/ProgressBar")
 gopnikCounterText = NodePath("../CanvasLayer/RichTextLabel")
 
@@ -230,3 +238,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65256, 0, -0.909603)
 
 [node name="plane" parent="." instance=ExtResource("17_ls4ot")]
 transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -8.38024, -9.53674e-07, 0.686475)
+visible = false
+
+[node name="toilet" parent="." instance=ExtResource("18_tx362")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03309, 0.0662039, -2.71946)
+
+[node name="house" parent="." instance=ExtResource("19_l7nqg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.15195, 0, -0.174099)
+
+[node name="house2" parent="." instance=ExtResource("20_w7ck5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.96284, 0, 1.38672)
+
+[node name="planebig" parent="." instance=ExtResource("21_2nn5w")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -8.41404, 0, -5.81379)
+
+[node name="WorldBorders" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldBorders"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBorders/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.56493, 1.78564, 5.2806)
+shape = SubResource("BoxShape3D_2nn5w")
+
+[node name="cart0" parent="." instance=ExtResource("22_ou4v7")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -6.23104, 0, -3.54261)
+
+[node name="cart2" parent="." instance=ExtResource("23_53hnx")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -6.27727, 0, -3.04204)
+
+[node name="cart4" parent="." instance=ExtResource("24_mxqdg")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -6.27846, 0, -1.16028)

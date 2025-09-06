@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://nqx808siv0pg"]
+
+[ext_resource type="PackedScene" uid="uid://cfov2uba0tkam" path="res://models/map/buildings/house2/house2.fbx" id="1_l6yno"]
+
+[node name="house2" instance=ExtResource("1_l6yno")]
+
+[node name="Cube_004" parent="." index="0"]
+transform = Transform3D(6, 0, 0, 0, -2.62268e-07, 6, 0, -6, -2.62268e-07, 0, 0, 0)

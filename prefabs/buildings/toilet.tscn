@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://l3d8ljux5xan"]
+
+[ext_resource type="PackedScene" uid="uid://dsq2npefcrmbg" path="res://models/map/buildings/toilet/toilet.fbx" id="1_t6iy6"]
+[ext_resource type="Script" uid="uid://cqg3hamsc8nvt" path="res://scripts/gopnikSpawner.gd" id="2_3ie1v"]
+
+[node name="toilet" instance=ExtResource("1_t6iy6")]
+script = ExtResource("2_3ie1v")
+
+[node name="toilet" parent="." index="0"]
+transform = Transform3D(6, 0, 0, 0, -2.62268e-07, 6, 0, -6, -2.62268e-07, 0, 0, 0)

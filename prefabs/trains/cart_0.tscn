@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://7yag13bmvvmv"]
+
+[ext_resource type="PackedScene" uid="uid://co5vkd5qy82l6" path="res://models/map/train/cart0/cart0.fbx" id="1_d8uk8"]
+
+[node name="cart0" instance=ExtResource("1_d8uk8")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
+
+[node name="Circle_032" parent="." index="0"]
+transform = Transform3D(0.0644821, -2.27905, 99.974, -99.9995, 0.32773, 0.0719756, -0.329285, -99.9735, -2.27883, 0.954823, 1.02568, -17.7257)
+
+[node name="Circle_033" parent="." index="1"]
+transform = Transform3D(0.0644821, -2.27905, 99.974, -99.9995, 0.32773, 0.0719756, -0.329285, -99.9735, -2.27883, 1.0004, 1.01912, -15.7262)
+
+[node name="Circle_034" parent="." index="2"]
+transform = Transform3D(0.0644821, -2.27905, 99.974, -99.9995, 0.32773, 0.0719756, -0.329285, -99.9735, -2.27883, 0.388099, 0.962688, 1.29208)
+
+[node name="Circle_035" parent="." index="3"]
+transform = Transform3D(0.0644821, -2.27905, 99.974, -99.9995, 0.32773, 0.0719756, -0.329285, -99.9735, -2.27883, 0.342519, 0.969242, -0.707394)
+
+[node name="Circle_036" parent="." index="4"]
+transform = Transform3D(0.0644821, -2.27905, 99.974, -99.9995, 0.32773, 0.0719756, -0.329285, -99.9735, -2.27883, 7.3407, 0.974282, -0.866912)
+
+[node name="Circle_037" parent="." index="5"]
+transform = Transform3D(0.0644821, -2.27905, 99.974, -99.9995, 0.32773, 0.0719756, -0.329285, -99.9735, -2.27883, 7.38628, 0.967727, 1.13256)
+
+[node name="Circle_038" parent="." index="6"]
+transform = Transform3D(0.0644821, -2.27905, 99.974, -99.9995, 0.32773, 0.0719756, -0.329285, -99.9735, -2.27883, 7.99858, 1.02416, -15.8857)
+
+[node name="Circle_039" parent="." index="7"]
+transform = Transform3D(0.0644821, -2.27905, 99.974, -99.9995, 0.32773, 0.0719756, -0.329285, -99.9735, -2.27883, 7.953, 1.03072, -17.8852)
+
+[node name="Cube_005" parent="." index="8"]
+transform = Transform3D(99.974, -2.27905, -0.0645123, 0.0719996, 0.327724, 99.9995, -2.27882, -99.9735, 0.329281, 1.95327, 3.02639, -17.7419)

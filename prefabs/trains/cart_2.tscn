@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://ifiujqd3j3n1"]
+
+[ext_resource type="PackedScene" uid="uid://dbc180vxsquwv" path="res://models/map/train/cart2/cart2.fbx" id="1_me6q8"]
+
+[node name="cart2" instance=ExtResource("1_me6q8")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
+
+[node name="Circle" parent="." index="0"]
+transform = Transform3D(-0.111389, -5.00824, 99.8745, -99.9842, -1.76495, -0.200009, 1.77275, -99.8589, -5.00549, 0.69067, 0.85655, 0.154897)
+
+[node name="Circle_001" parent="." index="1"]
+transform = Transform3D(-0.111389, -5.00824, 99.8745, -99.9842, -1.76495, -0.200009, 1.77275, -99.8589, -5.00549, 0.790836, 0.891849, 2.15207)
+
+[node name="Circle_002" parent="." index="2"]
+transform = Transform3D(-0.111389, -5.00824, 99.8745, -99.9842, -1.76495, -0.200009, 1.77275, -99.8589, -5.00549, 0.643503, 1.19389, 19.1781)
+
+[node name="Circle_003" parent="." index="3"]
+transform = Transform3D(-0.111389, -5.00824, 99.8745, -99.9842, -1.76495, -0.200009, 1.77275, -99.8589, -5.00549, 0.543337, 1.15859, 17.181)
+
+[node name="Circle_004" parent="." index="4"]
+transform = Transform3D(-0.111389, -5.00824, 99.8745, -99.9842, -1.76495, -0.200009, 1.77275, -99.8589, -5.00549, 7.53455, 1.14459, 16.8306)
+
+[node name="Circle_005" parent="." index="5"]
+transform = Transform3D(-0.111389, -5.00824, 99.8745, -99.9842, -1.76495, -0.200009, 1.77275, -99.8589, -5.00549, 7.63471, 1.17989, 18.8278)
+
+[node name="Circle_006" parent="." index="6"]
+transform = Transform3D(-0.111389, -5.00824, 99.8745, -99.9842, -1.76495, -0.200009, 1.77275, -99.8589, -5.00549, 7.78205, 0.877849, 1.80169)
+
+[node name="Circle_007" parent="." index="7"]
+transform = Transform3D(-0.111389, -5.00824, 99.8745, -99.9842, -1.76495, -0.200009, 1.77275, -99.8589, -5.00549, 7.68188, 0.84255, -0.195492)
+
+[node name="Cube_001" parent="." index="8"]
+transform = Transform3D(99.8744, -5.0083, 0.11138, -0.200008, -1.76497, 99.9842, -5.00555, -99.8589, -1.77276, 1.69164, 2.85423, 0.0693855)

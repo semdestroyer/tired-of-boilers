@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfb4c08jy1mgj"]
+
+[ext_resource type="PackedScene" uid="uid://cnjidad7e6ckl" path="res://models/map/train/cart4/cart4.fbx" id="1_82k8c"]
+
+[node name="cart4" instance=ExtResource("1_82k8c")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
+
+[node name="Circle_024" parent="." index="0"]
+transform = Transform3D(0.319612, -3.35726, 99.9431, -99.9995, 0.0475109, 0.321394, -0.0582755, -99.9436, -3.3571, 8.44014, 1.11758, 1.21666)
+
+[node name="Circle_025" parent="." index="1"]
+transform = Transform3D(0.319612, -3.35726, 99.9431, -99.9995, 0.0475109, 0.321394, -0.0582755, -99.9436, -3.3571, 8.50729, 1.11663, 3.21554)
+
+[node name="Circle_026" parent="." index="2"]
+transform = Transform3D(0.319612, -3.35726, 99.9431, -99.9995, 0.0475109, 0.321394, -0.0582755, -99.9436, -3.3571, 8.07861, 1.10534, 20.2395)
+
+[node name="Circle_027" parent="." index="3"]
+transform = Transform3D(0.319612, -3.35726, 99.9431, -99.9995, 0.0475109, 0.321394, -0.0582755, -99.9436, -3.3571, 8.01146, 1.10629, 18.2406)
+
+[node name="Circle_028" parent="." index="4"]
+transform = Transform3D(0.319612, -3.35726, 99.9431, -99.9995, 0.0475109, 0.321394, -0.0582755, -99.9436, -3.3571, 1.01544, 1.08379, 18.4756)
+
+[node name="Circle_029" parent="." index="5"]
+transform = Transform3D(0.319612, -3.35726, 99.9431, -99.9995, 0.0475109, 0.321394, -0.0582755, -99.9436, -3.3571, 1.08259, 1.08284, 20.4745)
+
+[node name="Circle_030" parent="." index="6"]
+transform = Transform3D(0.319612, -3.35726, 99.9431, -99.9995, 0.0475109, 0.321394, -0.0582755, -99.9436, -3.3571, 1.51127, 1.09413, 3.45053)
+
+[node name="Circle_031" parent="." index="7"]
+transform = Transform3D(0.319612, -3.35726, 99.9431, -99.9995, 0.0475109, 0.321394, -0.0582755, -99.9436, -3.3571, 1.44412, 1.09508, 1.45167)
+
+[node name="Cube_006" parent="." index="8"]
+transform = Transform3D(99.9431, -3.35738, -0.319635, 0.321411, 0.047487, 99.9995, -3.35721, -99.9436, 0.0582516, 2.43716, 3.09829, 1.41926)
